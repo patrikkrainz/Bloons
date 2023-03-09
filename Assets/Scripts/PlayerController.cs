@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     private GazePoint gazePoint;
 
+    public GameObject viewPoint;
+
     public KeyCode Shoot = KeyCode.Space;
 
     public float viewX;
@@ -34,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
         viewX = gazePoint.Screen.x;
         viewY = gazePoint.Screen.y;
+
+        viewPoint.transform.position = new Vector3(viewX, viewY, 0);
     }
 
     public void ManageShots(float viewX, float viewY)
