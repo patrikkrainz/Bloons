@@ -5,46 +5,48 @@ using Tobii.Gaming;
 
 public class PlayerController : MonoBehaviour
 {
-    private GazePoint gazePoint;
-
-    public GameObject viewPoint;
+    public GameObject focusedObject;
 
     public KeyCode Shoot = KeyCode.Space;
 
-    public float viewX;
-    public float viewY;
-
     void Start()
     {
-        
+        TobiiAPI.Start(null);
     }
 
     void Update()
     {
-        ManageGazePoint();
+        GameObject focusedObjectTobii = TobiiAPI.GetFocusedObject();
+
+        focusedObject = focusedObjectTobii;
+
+
+        //checking íf objects get focused
+
+        /*if (focusedObjectTobii != null)
+        {
+            print("The focused game object is: " + focusedObject.name);
+        }
+        else
+        {
+            print("No Object focused");
+        }*/
 
         if (Input.GetKeyDown(Shoot))
         {
-            ManageShots(viewX, viewY);
+            ManageShots();
         }
     }
 
-
-    public void ManageGazePoint()
+    public void ManageShots()
     {
-        gazePoint = TobiiAPI.GetGazePoint();
-
-        viewX = gazePoint.Screen.x;
-        viewY = gazePoint.Screen.y;
-
-        viewPoint.transform.position = new Vector3(viewX, viewY, 0);
-    }
-
-    public void ManageShots(float viewX, float viewY)
-    {
-        if (true)
+        if (focusedObject != null && focusedObject.layer == 6)
         {
-            return;
+            print("You hit the target!");
+        }
+        else
+        {
+            print("You missed :(");
         }
     }
 }
