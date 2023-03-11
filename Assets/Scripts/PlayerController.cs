@@ -6,6 +6,7 @@ using Tobii.Gaming;
 public class PlayerController : MonoBehaviour
 {
     public GameObject focusedObject;
+    public GameObject prevObject;
 
     public KeyCode Shoot = KeyCode.Space;
 
@@ -20,7 +21,12 @@ public class PlayerController : MonoBehaviour
 
         focusedObject = focusedObjectTobii;
 
-        if (Input.GetKeyDown(Shoot))
+        if(focusedObject != null && focusedObject != prevObject)
+        {
+            prevObject = focusedObject;
+        }
+
+        if (GameHandler.gameStarted && Input.GetKeyDown(Shoot))
         {
             ManageShots();
         }
@@ -42,7 +48,19 @@ public class PlayerController : MonoBehaviour
     {
         if (focusedObject != null && focusedObject.layer == 6)
         {
+            Object.Destroy(focusedObject);
+            focusedObject = null;
+            prevObject = null;
+            GameHandler.gameOver = true;
             print("You hit the target!");
+        }
+        else if(focusedObject != null && focusedObject.layer == 7)
+        {
+            Object.Destroy(focusedObject);
+            focusedObject = null;
+            prevObject = null;
+            GameHandler.gameTimer -= 3;
+            print("You missed :(");
         }
         else
         {
