@@ -21,7 +21,13 @@ public class PlayerController : MonoBehaviour
         focusedObject = focusedObjectTobii;
 
 
-        //checking íf objects get focused
+        if (Input.GetKeyDown(Shoot))
+        {
+            ManageShots();
+        }
+
+
+        //Checking if objects get focused
 
         /*if (focusedObjectTobii != null)
         {
@@ -31,11 +37,6 @@ public class PlayerController : MonoBehaviour
         {
             print("No Object focused");
         }*/
-
-        if (Input.GetKeyDown(Shoot))
-        {
-            ManageShots();
-        }
     }
 
     public void ManageShots()
