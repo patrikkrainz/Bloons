@@ -13,7 +13,6 @@ public class GameHandler : MonoBehaviour
     public int Level = 1;
 
     public static float gameTimer = 30;
-    public float elapsedTime = 0;
 
     public static bool gameStarted = false;
     public static bool gameOver = false;
