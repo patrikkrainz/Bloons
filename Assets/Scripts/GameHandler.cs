@@ -43,7 +43,7 @@ public class GameHandler : MonoBehaviour
 
             if (gameTimer > 0 && gameTimer != 30)
             {
-                //Level += 1;
+                Level += 1;
                 gameTimer = 30;
                 print("You won :)");
             }
@@ -61,14 +61,12 @@ public class GameHandler : MonoBehaviour
             gameStarted = true;
 
             Instantiate(Target);
-            Instantiate(NoTarget);
-            print("Created Target");
 
             //weiﬂ noch nicht wie die Verschiebung funktioniert, braucht Unity.transform Typen?
-            /*for (int i = 0; i < Level; i++)
+            for (int i = 0; i < Level; i++)
             {
                 Instantiate(NoTarget);
-            }*/
+            }
         }
 
 
