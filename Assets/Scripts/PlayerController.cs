@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
         focusedObject = focusedObjectTobii;
 
-
         if (Input.GetKeyDown(Shoot))
         {
             ManageShots();
