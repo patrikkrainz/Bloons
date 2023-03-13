@@ -7,10 +7,15 @@ public class GameHandler : MonoBehaviour
     public GameObject Target;
     public GameObject NoTarget;
 
+    public GameObject[] Balloons;
+
+    Transform spawnTransform;
+
     private KeyCode Start = KeyCode.Space;
     private KeyCode Quit = KeyCode.Q;
 
     public int Level = 1;
+    public int BalloonCap;
 
     public static float gameTimer = 30;
 
@@ -60,12 +65,23 @@ public class GameHandler : MonoBehaviour
         {
             gameStarted = true;
 
-            Instantiate(Target);
+            BalloonCap = 2 + Level;
 
             //weiﬂ noch nicht wie die Verschiebung funktioniert, braucht Unity.transform Typen?
-            for (int i = 0; i < Level; i++)
+            for (int i = 0; i < BalloonCap; i++)
             {
-                Instantiate(NoTarget);
+                if(i == 0)
+                {
+                    Instantiate(Balloons[0]);
+                }
+                else
+                {
+                    int balloonType = Random.Range(1, 3);
+                    /*Vector3 position = new Vector3(Random.Range(-3.0f, 3.0f), Random.Range(-3.0f, 3.0f), Random.Range(-3.0f, 3.0f));
+                    spawnTransform.position = position;
+                    Instantiate(Balloons[balloonType], spawnTransform);*/
+                    Instantiate(Balloons[balloonType]);
+                }
             }
         }
 
