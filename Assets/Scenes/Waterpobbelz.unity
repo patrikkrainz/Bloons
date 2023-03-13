@@ -372,6 +372,7 @@ MonoBehaviour:
   - {fileID: 4261315581067595761, guid: 6f0901b4dd861f74f8f425cce017fc6a, type: 3}
   - {fileID: 7292245013058977624, guid: e468b7e44a826504abde2b617988d423, type: 3}
   - {fileID: 3827180234595945768, guid: 880e18eaec55e9d46b1d7a224266da7f, type: 3}
+  spawnTransform: {fileID: 909890424}
   Level: 1
   BalloonCap: 0
 --- !u!4 &909890424
@@ -382,7 +383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909890422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41550994, y: 0.42315292, z: 0.21057796}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
