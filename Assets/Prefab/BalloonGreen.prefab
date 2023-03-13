@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4492112522535278482}
   - component: {fileID: 3222775962917987745}
   - component: {fileID: 7202259730672012085}
-  m_Layer: 0
+  - component: {fileID: -805539419516284090}
+  m_Layer: 7
   m_Name: BalloonGreen
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +65,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-805539419516284090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827180234595945768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d87d489c55fc504987b709bbe1e4ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4957171438712160308
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +88,7 @@ GameObject:
   - component: {fileID: 3158992041764804505}
   - component: {fileID: 1010015399729189477}
   - component: {fileID: 3413321079162470248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +171,7 @@ GameObject:
   - component: {fileID: 5626879245391128223}
   - component: {fileID: 5927251587127247132}
   - component: {fileID: 7958148046417450243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

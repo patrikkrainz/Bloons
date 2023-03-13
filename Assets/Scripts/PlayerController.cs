@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            GameHandler.gameTimer -= 3;
             print("You missed :(");
         }
     }
