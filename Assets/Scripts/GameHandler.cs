@@ -9,7 +9,12 @@ public class GameHandler : MonoBehaviour
 
     public GameObject[] Balloons;
 
+    public GameObject currentBalloon;
+
+    public Rigidbody rb;
+
     public Vector3 spawnPosition;
+    public Vector3 force;
 
     private KeyCode Start = KeyCode.Space;
     private KeyCode Quit = KeyCode.Q;
@@ -17,7 +22,7 @@ public class GameHandler : MonoBehaviour
     public int Level = 1;
     public int BalloonCap;
 
-    public static float gameTimer = 30;
+    public static float gameTimer = 10;
 
     public float posX;
     public float posY;
@@ -50,15 +55,15 @@ public class GameHandler : MonoBehaviour
                 GameObject.Destroy(target);
             }
 
-            if (gameTimer > 0 && gameTimer != 30)
+            if (gameTimer > 0 && gameTimer != 10)
             {
                 Level += 1;
-                gameTimer = 30;
+                gameTimer = 10;
                 print("You won :)");
             }
-            else if(gameTimer == 0 && gameTimer != 30)
+            else if(gameTimer == 0 && gameTimer != 10)
             {
-                gameTimer = 30;
+                gameTimer = 10;
                 print(" You lost :(");
             }
 
@@ -69,7 +74,7 @@ public class GameHandler : MonoBehaviour
         {
             gameStarted = true;
 
-            BalloonCap = 20 + Level;
+            BalloonCap = 10 + Level;
 
             if (BalloonCap > 20)
             {
@@ -81,6 +86,8 @@ public class GameHandler : MonoBehaviour
             {
                 if(i == 0)
                 {
+                    force = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
+
                     posZ = Random.Range(0, 6.6f);
 
                     if (posZ < 1)
@@ -115,11 +122,15 @@ public class GameHandler : MonoBehaviour
                     }
 
                     spawnPosition = new Vector3(posX, posY, posZ);
-                    Instantiate(Balloons[0], spawnPosition, Quaternion.identity);
+                    currentBalloon = Instantiate(Balloons[0], spawnPosition, Quaternion.identity);
+                    rb = currentBalloon.GetComponent<Rigidbody>();
+                    rb.AddForce(force);
                 }
                 else
                 {
                     int balloonType = Random.Range(1, 4);
+
+                    force = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
 
                     posZ = Random.Range(0, 6.6f);
 
@@ -155,7 +166,9 @@ public class GameHandler : MonoBehaviour
                     }
 
                     spawnPosition = new Vector3(posX, posY, posZ);
-                    Instantiate(Balloons[balloonType], spawnPosition, Quaternion.identity);
+                    currentBalloon = Instantiate(Balloons[balloonType], spawnPosition, Quaternion.identity);
+                    rb = currentBalloon.GetComponent<Rigidbody>();
+                    rb.AddForce(force);
                 }
             }
         }
