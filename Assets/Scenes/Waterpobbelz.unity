@@ -863,6 +863,8 @@ MonoBehaviour:
   force: {x: 0, y: 0, z: 0}
   Level: 1
   BalloonCap: 0
+  TargetBalloonIndex: 0
+  BalloonIndex: 0
   posX: 0
   posY: 0
   posZ: 0
