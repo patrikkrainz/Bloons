@@ -857,7 +857,10 @@ MonoBehaviour:
   - {fileID: 4261315581067595761, guid: 6f0901b4dd861f74f8f425cce017fc6a, type: 3}
   - {fileID: 7292245013058977624, guid: e468b7e44a826504abde2b617988d423, type: 3}
   - {fileID: 3827180234595945768, guid: 880e18eaec55e9d46b1d7a224266da7f, type: 3}
+  currentBalloon: {fileID: 0}
+  rb: {fileID: 0}
   spawnPosition: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
   Level: 1
   BalloonCap: 0
   posX: 0
