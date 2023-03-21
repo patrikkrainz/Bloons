@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.UI;
+using TMPro;
 
 public class GameHandler : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class GameHandler : MonoBehaviour
     public GameObject currentBalloon;
 
     public Rigidbody rb;
+
+    public TMP_Text LevelText;
 
     public Vector3 spawnPosition;
     public Vector3 force;
@@ -60,6 +64,7 @@ public class GameHandler : MonoBehaviour
             if (gameTimer > 0 && gameTimer != 10)
             {
                 Level += 1;
+                LevelText.text = Level.ToString();
                 gameTimer = 10;
                 print("You won :)");
             }
