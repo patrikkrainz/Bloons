@@ -127,6 +127,7 @@ public class GameHandler : MonoBehaviour
 
                     spawnPosition = new Vector3(posX, posY, posZ);
                     currentBalloon = Instantiate(Balloons[TargetBalloonIndex], spawnPosition, Quaternion.identity);
+                    currentBalloon.layer = 6;
                     rb = currentBalloon.GetComponent<Rigidbody>();
                     rb.AddForce(force);
                 }
