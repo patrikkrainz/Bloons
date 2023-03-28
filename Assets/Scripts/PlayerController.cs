@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     public KeyCode Shoot = KeyCode.Space;
 
+    public static bool noDart;
+
     void Start()
     {
         TobiiAPI.Start(null);
@@ -46,26 +48,35 @@ public class PlayerController : MonoBehaviour
 
     public void ManageShots()
     {
-        if (focusedObject != null && focusedObject.layer == 6)
+        if (!noDart)
         {
-            Object.Destroy(focusedObject);
-            focusedObject = null;
-            prevObject = null;
-            GameHandler.gameOver = true;
-            print("You hit the target!");
-        }
-        else if(focusedObject != null && focusedObject.layer == 7)
-        {
-            Object.Destroy(focusedObject);
-            focusedObject = null;
-            prevObject = null;
-            GameHandler.gameTimer -= 3;
-            print("You missed :(");
-        }
-        else
-        {
-            GameHandler.gameTimer -= 3;
-            print("You missed :(");
+            if (focusedObject != null && focusedObject.layer == 6)
+            {
+                Object.Destroy(focusedObject);
+                focusedObject = null;
+                prevObject = null;
+                //GameObject.Destroy(GameHandler.currentDart);
+                //noDart = true;
+                GameHandler.gameOver = true;
+                print("You hit the target!");
+            }
+            else if (focusedObject != null && focusedObject.layer == 7)
+            {
+                Object.Destroy(focusedObject);
+                focusedObject = null;
+                prevObject = null;
+                //GameObject.Destroy(GameHandler.currentDart);
+                //noDart = true;
+                GameHandler.gameTimer -= 3;
+                print("You missed :(");
+            }
+            else
+            {
+                //GameObject.Destroy(GameHandler.currentDart);
+                //noDart = true;
+                GameHandler.gameTimer -= 3;
+                print("You missed :(");
+            }
         }
     }
 }

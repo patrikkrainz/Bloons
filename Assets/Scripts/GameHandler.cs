@@ -6,21 +6,23 @@ using TMPro;
 
 public class GameHandler : MonoBehaviour
 {
-    public GameObject Target;
-    public GameObject NoTarget;
-
     public GameObject[] Balloons;
+    public GameObject[] Darts;
 
     public GameObject currentBalloon;
+    public GameObject currentDart;
+    public GameObject DartSpawn;
 
     public Rigidbody rb;
 
     public TMP_Text LevelText;
 
+    public Transform SpawnTrans;
+
     public Vector3 spawnPosition;
     public Vector3 force;
 
-    private KeyCode Start = KeyCode.Space;
+    private KeyCode Begin = KeyCode.Space;
     private KeyCode Quit = KeyCode.Q;
 
     public int Level = 1;
@@ -36,6 +38,11 @@ public class GameHandler : MonoBehaviour
 
     public static bool gameStarted = false;
     public static bool gameOver = false;
+
+    void Start()
+    {
+        SpawnTrans = DartSpawn.transform;
+    }
 
     void Update()
     {
@@ -53,6 +60,9 @@ public class GameHandler : MonoBehaviour
         if(gameOver == true)
         {
             gameStarted = false;
+
+            GameObject Dart = GameObject.FindGameObjectWithTag("Dart");
+            GameObject.Destroy(Dart);
 
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
 
@@ -74,10 +84,15 @@ public class GameHandler : MonoBehaviour
                 print(" You lost :(");
             }
 
-            StartCoroutine(WaitForDelay(0.5f));
+            /*if (PlayerController.noDart)
+            {
+                StartCoroutine(WaitForDelay(0.2f, 2));
+            }*/
+
+            StartCoroutine(WaitForDelay(0.5f, 1));
         }
 
-        if (!gameStarted && !gameOver && Input.GetKeyDown(Start))
+        if (!gameStarted && !gameOver && Input.GetKeyDown(Begin))
         {
             gameStarted = true;
 
@@ -133,6 +148,7 @@ public class GameHandler : MonoBehaviour
                     spawnPosition = new Vector3(posX, posY, posZ);
                     currentBalloon = Instantiate(Balloons[TargetBalloonIndex], spawnPosition, Quaternion.identity);
                     currentBalloon.layer = 6;
+                    currentDart = Instantiate(Darts[TargetBalloonIndex], SpawnTrans);
                     rb = currentBalloon.GetComponent<Rigidbody>();
                     rb.AddForce(force);
                 }
@@ -199,12 +215,20 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public IEnumerator WaitForDelay(float delay)
+    public IEnumerator WaitForDelay(float delay, int mode)
     {
         yield return new WaitForSeconds(delay);
 
-        gameOver = false;
+        if(mode == 1)
+        {
+            gameOver = false;
+        }
+        /*else
+        {
+            currentDart = Instantiate(Darts[TargetBalloonIndex], SpawnTrans);
+            PlayerController.noDart = false;
+        }*/
 
-        StopCoroutine(WaitForDelay(delay));
+        StopCoroutine(WaitForDelay(delay, mode));
     }
 }
