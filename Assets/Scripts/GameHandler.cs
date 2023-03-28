@@ -10,7 +10,7 @@ public class GameHandler : MonoBehaviour
     public GameObject[] Darts;
 
     public GameObject currentBalloon;
-    public GameObject currentDart;
+    public static GameObject currentDart;
     public GameObject DartSpawn;
 
     public Rigidbody rb;
@@ -23,6 +23,7 @@ public class GameHandler : MonoBehaviour
     public Vector3 force;
 
     private KeyCode Begin = KeyCode.Space;
+    private KeyCode Reload = KeyCode.LeftShift;
     private KeyCode Quit = KeyCode.Q;
 
     public int Level = 1;
@@ -61,8 +62,12 @@ public class GameHandler : MonoBehaviour
         {
             gameStarted = false;
 
-            GameObject Dart = GameObject.FindGameObjectWithTag("Dart");
-            GameObject.Destroy(Dart);
+            GameObject[] darts = GameObject.FindGameObjectsWithTag("Dart");
+
+            foreach (GameObject dart in darts)
+            {
+                GameObject.Destroy(dart);
+            }
 
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
 
@@ -84,12 +89,13 @@ public class GameHandler : MonoBehaviour
                 print(" You lost :(");
             }
 
-            /*if (PlayerController.noDart)
-            {
-                StartCoroutine(WaitForDelay(0.2f, 2));
-            }*/
+            StartCoroutine(WaitForDelay(0.5f));
+        }
 
-            StartCoroutine(WaitForDelay(0.5f, 1));
+        if(gameStarted && !gameOver && !currentDart.activeSelf && Input.GetKeyDown(Reload))
+        {
+            //currentDart.SetActive(true);
+            StartCoroutine(WaitForDart(0.3f));
         }
 
         if (!gameStarted && !gameOver && Input.GetKeyDown(Begin))
@@ -103,8 +109,8 @@ public class GameHandler : MonoBehaviour
                 BalloonCap = 20;
             }
 
-                //weiﬂ noch nicht wie die Verschiebung funktioniert, braucht Unity.transform Typen?
-                for (int i = 0; i < BalloonCap; i++)
+            //weiﬂ noch nicht wie die Verschiebung funktioniert, braucht Unity.transform Typen?
+            for (int i = 0; i < BalloonCap; i++)
             {
                 if(i == 0)
                 {
@@ -148,7 +154,7 @@ public class GameHandler : MonoBehaviour
                     spawnPosition = new Vector3(posX, posY, posZ);
                     currentBalloon = Instantiate(Balloons[TargetBalloonIndex], spawnPosition, Quaternion.identity);
                     currentBalloon.layer = 6;
-                    currentDart = Instantiate(Darts[TargetBalloonIndex], SpawnTrans);
+                    currentDart = Instantiate(Darts[TargetBalloonIndex], new Vector3(0.83f, -0.41f, -3.81f), Quaternion.identity);
                     rb = currentBalloon.GetComponent<Rigidbody>();
                     rb.AddForce(force);
                 }
@@ -215,20 +221,21 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public IEnumerator WaitForDelay(float delay, int mode)
+    public IEnumerator WaitForDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        if(mode == 1)
-        {
-            gameOver = false;
-        }
-        /*else
-        {
-            currentDart = Instantiate(Darts[TargetBalloonIndex], SpawnTrans);
-            PlayerController.noDart = false;
-        }*/
+        gameOver = false;
+        
+        StopCoroutine(WaitForDelay(delay));
+    }
 
-        StopCoroutine(WaitForDelay(delay, mode));
+    public IEnumerator WaitForDart(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        currentDart.SetActive(true);
+
+        StopCoroutine(WaitForDart(delay));
     }
 }

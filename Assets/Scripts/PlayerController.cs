@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
 
     public KeyCode Shoot = KeyCode.Space;
 
-    public static bool noDart;
-
     void Start()
     {
         TobiiAPI.Start(null);
@@ -48,15 +46,14 @@ public class PlayerController : MonoBehaviour
 
     public void ManageShots()
     {
-        if (!noDart)
+        if (GameHandler.currentDart.activeSelf)
         {
             if (focusedObject != null && focusedObject.layer == 6)
             {
                 Object.Destroy(focusedObject);
                 focusedObject = null;
                 prevObject = null;
-                //GameObject.Destroy(GameHandler.currentDart);
-                //noDart = true;
+                GameHandler.currentDart.SetActive(false);
                 GameHandler.gameOver = true;
                 print("You hit the target!");
             }
@@ -65,15 +62,13 @@ public class PlayerController : MonoBehaviour
                 Object.Destroy(focusedObject);
                 focusedObject = null;
                 prevObject = null;
-                //GameObject.Destroy(GameHandler.currentDart);
-                //noDart = true;
+                GameHandler.currentDart.SetActive(false);
                 GameHandler.gameTimer -= 3;
                 print("You missed :(");
             }
             else
             {
-                //GameObject.Destroy(GameHandler.currentDart);
-                //noDart = true;
+                GameHandler.currentDart.SetActive(false);
                 GameHandler.gameTimer -= 3;
                 print("You missed :(");
             }
