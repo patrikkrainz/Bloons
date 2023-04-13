@@ -112,7 +112,6 @@ public class GameHandler : MonoBehaviour
 
         if(gameStarted && !gameOver && !currentDart.activeSelf && Input.GetKeyDown(Reload))
         {
-            //currentDart.SetActive(true);
             StartCoroutine(WaitForDart(0.3f));
         }
 
@@ -127,7 +126,6 @@ public class GameHandler : MonoBehaviour
                 BalloonCap = 20;
             }
 
-            //weiﬂ noch nicht wie die Verschiebung funktioniert, braucht Unity.transform Typen?
             for (int i = 0; i < BalloonCap; i++)
             {
                 if(i == 0)
