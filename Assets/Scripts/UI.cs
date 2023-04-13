@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -46,7 +45,7 @@ public class UI : MonoBehaviour
 
         if (select != null && lastMousePos != Input.mousePosition)
         {
-            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(null);
             select = null;
         }
 
@@ -55,9 +54,9 @@ public class UI : MonoBehaviour
             MM.SetActive(true);
         }
 
-        if(SceneManager.GetActiveScene().name == "MainMenu" && select == null && Input.anyKeyDown)
+        if (SceneManager.GetActiveScene().name == "MainMenu" && select == null && Input.anyKeyDown)
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Escape))
             {
 
             }
@@ -67,7 +66,7 @@ public class UI : MonoBehaviour
                 select = StartB;
             }
         }
-        else if(SceneManager.GetActiveScene().name == "Waterpobbelz" && PM.activeSelf && select == null && Input.anyKeyDown)
+        else if (SceneManager.GetActiveScene().name == "Waterpobbelz" && PM.activeSelf && select == null && Input.anyKeyDown)
         {
             ContinueB.Select();
             select = ContinueB;
@@ -75,11 +74,11 @@ public class UI : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Waterpobbelz" && !PM.activeSelf && Input.GetKeyDown(Pause))
         {
-            pauseGame();
+            Time.timeScale = 0;
             PM.SetActive(true);
         }
 
-        if(OM.activeSelf && select == null && Input.anyKeyDown)
+        if (OM.activeSelf && select == null && Input.anyKeyDown)
         {
             MainV.Select();
             select = MainV;
@@ -104,7 +103,7 @@ public class UI : MonoBehaviour
         {
             PM.SetActive(false);
         }
-        
+
         OM.SetActive(true);
         Back.SetActive(true);
         //BackB.Select();
@@ -119,19 +118,21 @@ public class UI : MonoBehaviour
 
     public void pressContinue()
     {
+        Time.timeScale = 1;
         select = null;
-        pauseGame();
+        PM.SetActive(false);
     }
 
     public void pressBackToMM()
     {
         select = null;
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void pressBack()
     {
-        if(SceneManager.GetActiveScene().name == "MainMenu")
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             OM.SetActive(false);
             Back.SetActive(false);
@@ -146,18 +147,6 @@ public class UI : MonoBehaviour
             PM.SetActive(true);
             ContinueB.Select();
             select = ContinueB;
-        }
-    }
-
-    private void pauseGame()
-    {
-        if(Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
         }
     }
 

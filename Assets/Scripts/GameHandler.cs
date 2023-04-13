@@ -18,8 +18,6 @@ public class GameHandler : MonoBehaviour
     public TMP_Text LevelText;
     public TMP_Text TimeText;
 
-    public Transform SpawnTrans;
-
     public Vector3 spawnPosition;
     public Vector3 force;
 
@@ -41,9 +39,18 @@ public class GameHandler : MonoBehaviour
     public static bool gameStarted = false;
     public static bool gameOver = false;
 
-    void Start()
+    private void Awake()
     {
-        SpawnTrans = DartSpawn.transform;
+        currentDart = null;
+        currentBalloon = null;
+        gameStarted = false;
+        gameOver = false;
+        Level = 1;
+        posX = 0;
+        posY = 0;
+        posZ = 0;
+        rb = null;
+        gameTimer = 10;
     }
 
     void Update()
