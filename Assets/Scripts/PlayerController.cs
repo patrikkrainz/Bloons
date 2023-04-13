@@ -63,13 +63,13 @@ public class PlayerController : MonoBehaviour
                 focusedObject = null;
                 prevObject = null;
                 GameHandler.currentDart.SetActive(false);
-                GameHandler.gameTimer -= 3;
+                GameHandler.gameTimer -= 2;
                 print("You missed :(");
             }
             else
             {
                 GameHandler.currentDart.SetActive(false);
-                GameHandler.gameTimer -= 3;
+                GameHandler.gameTimer -= 2;
                 print("You missed :(");
             }
         }

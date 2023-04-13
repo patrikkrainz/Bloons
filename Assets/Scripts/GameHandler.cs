@@ -16,6 +16,7 @@ public class GameHandler : MonoBehaviour
     public Rigidbody rb;
 
     public TMP_Text LevelText;
+    public TMP_Text TimeText;
 
     public Transform SpawnTrans;
 
@@ -47,9 +48,10 @@ public class GameHandler : MonoBehaviour
 
     void Update()
     {
-        if(gameOver == false)
+        if(!gameOver && gameStarted)
         {
             gameTimer -= Time.deltaTime;
+            TimeText.text = gameTimer.ToString("F1");
         }
 
         if(gameTimer <= 0)
@@ -76,16 +78,32 @@ public class GameHandler : MonoBehaviour
                 GameObject.Destroy(target);
             }
 
-            if (gameTimer > 0 && gameTimer != 10)
+            if (gameTimer > 0 && ((gameTimer != 10 && Level <= 20) || (gameTimer != 5 && Level > 20)))
             {
                 Level += 1;
                 LevelText.text = Level.ToString();
-                gameTimer = 10;
+                if(Level <= 20)
+                {
+                    gameTimer = 10;
+                }
+                else
+                {
+                    gameTimer = 5;
+                }
+                
                 print("You won :)");
             }
             else if(gameTimer == 0 && gameTimer != 10)
             {
-                gameTimer = 10;
+                if (Level <= 20)
+                {
+                    gameTimer = 10;
+                }
+                else
+                {
+                    gameTimer = 5;
+                }
+
                 print(" You lost :(");
             }
 
@@ -104,7 +122,7 @@ public class GameHandler : MonoBehaviour
 
             BalloonCap = 10 + Level;
 
-            if (BalloonCap > 20)
+            if (Level > 10 && Level <= 30)
             {
                 BalloonCap = 20;
             }
@@ -154,6 +172,12 @@ public class GameHandler : MonoBehaviour
                     spawnPosition = new Vector3(posX, posY, posZ);
                     currentBalloon = Instantiate(Balloons[TargetBalloonIndex], spawnPosition, Quaternion.identity);
                     currentBalloon.layer = 6;
+                        
+                    if(Level > 30)
+                    {
+                        currentBalloon.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                    }
+
                     currentDart = Instantiate(Darts[TargetBalloonIndex], new Vector3(0.83f, -0.41f, -3.81f), Quaternion.identity);
                     rb = currentBalloon.GetComponent<Rigidbody>();
                     rb.AddForce(force);
@@ -206,6 +230,12 @@ public class GameHandler : MonoBehaviour
 
                         spawnPosition = new Vector3(posX, posY, posZ);
                         currentBalloon = Instantiate(Balloons[BalloonIndex], spawnPosition, Quaternion.identity);
+
+                        if (Level > 30)
+                        {
+                            currentBalloon.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                        }
+
                         rb = currentBalloon.GetComponent<Rigidbody>();
                         rb.AddForce(force);
                     }
