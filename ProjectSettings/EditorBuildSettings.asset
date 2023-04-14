@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: b9b899d162490314c8062d7a35ac1edf
   - enabled: 1
-    path: Assets/Scenes/BloonsOffensive.unity
+    path: Assets/Scenes/Bloons.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

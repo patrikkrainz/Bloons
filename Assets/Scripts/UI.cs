@@ -82,6 +82,7 @@ public class UI : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Bloons" && !PM.activeSelf && Input.GetKeyDown(Pause))
         {
+            PlayerController.canShoot = false;
             Time.timeScale = 0;
             PM.SetActive(true);
             VM.SetActive(true);
@@ -94,6 +95,7 @@ public class UI : MonoBehaviour
     {
         select = null;
         SceneManager.LoadScene("Bloons");
+        PlayerController.canShoot = true;
     }
 
     public void pressVolume()

@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource Source;
     public AudioClip Pop;
 
+    public static bool canShoot = false;
+
     void Start()
     {
         TobiiAPI.Start(null);
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
             prevObject = focusedObject;
         }
 
-        if (GameHandler.gameStarted && Input.GetKeyDown(Shoot))
+        if (GameHandler.gameStarted && Input.GetKeyDown(Shoot) && canShoot)
         {
             ManageShots();
         }
