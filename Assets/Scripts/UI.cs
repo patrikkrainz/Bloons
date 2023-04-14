@@ -21,7 +21,7 @@ public class UI : MonoBehaviour
     public GameObject VMButton;
     public GameObject VMSlider;
 
-    private KeyCode Pause = KeyCode.P;
+    private KeyCode Pause = KeyCode.Escape;
 
     private float cursorTimer;
 
@@ -118,6 +118,7 @@ public class UI : MonoBehaviour
     public void pressContinue()
     {
         Time.timeScale = 1;
+        PlayerController.canShoot = true;
         select = null;
         PM.SetActive(false);
         VM.SetActive(false);

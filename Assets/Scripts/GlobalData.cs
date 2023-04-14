@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GlobalData
 {
-    private static float Volume = -30;
+    private static float Volume = -10;
 
     public static void setVolume(float volume)
     {
