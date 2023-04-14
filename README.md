@@ -2,7 +2,7 @@
 Embodied-Play Game
 
 Mitglieder:
-Patrik Krainz
-Michajlo Miletic
-Florian Guggenberger
+Patrik Krainz,
+Michajlo Miletic,
+Florian Guggenberger,
 Elias Huber
