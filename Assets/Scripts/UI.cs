@@ -74,13 +74,13 @@ public class UI : MonoBehaviour
                 select = StartB;
             }
         }
-        else if (SceneManager.GetActiveScene().name == "BloonsOffensive" && PM.activeSelf && select == null && Input.anyKeyDown)
+        else if (SceneManager.GetActiveScene().name == "Bloons" && PM.activeSelf && select == null && Input.anyKeyDown)
         {
             ContinueB.Select();
             select = ContinueB;
         }
 
-        if (SceneManager.GetActiveScene().name == "BloonsOffensive" && !PM.activeSelf && Input.GetKeyDown(Pause))
+        if (SceneManager.GetActiveScene().name == "Bloons" && !PM.activeSelf && Input.GetKeyDown(Pause))
         {
             Time.timeScale = 0;
             PM.SetActive(true);
@@ -93,7 +93,7 @@ public class UI : MonoBehaviour
     public void pressStart()
     {
         select = null;
-        SceneManager.LoadScene("BloonsOffensive");
+        SceneManager.LoadScene("Bloons");
     }
 
     public void pressVolume()
@@ -138,7 +138,7 @@ public class UI : MonoBehaviour
             StartB.Select();
             select = StartB;
         }
-        else if(SceneManager.GetActiveScene().name == "BloonsOffensive")
+        else if(SceneManager.GetActiveScene().name == "Bloons")
         {
             ContinueB.Select();
             select = ContinueB;
