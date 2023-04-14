@@ -59,13 +59,14 @@ public class GameHandler : MonoBehaviour
         if(!gameOver && gameStarted)
         {
             gameTimer -= Time.deltaTime;
-            TimeText.text = gameTimer.ToString("F1");
-        }
 
-        if(gameTimer <= 0)
-        {
-            gameOver = true;
-            gameTimer = 0;
+            if (gameTimer <= 0)
+            {
+                gameOver = true;
+                gameTimer = 0;
+            }
+
+            TimeText.text = gameTimer.ToString("F1");
         }
 
         if(gameOver == true)
