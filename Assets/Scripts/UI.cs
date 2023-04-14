@@ -118,6 +118,7 @@ public class UI : MonoBehaviour
         Time.timeScale = 1;
         select = null;
         PM.SetActive(false);
+        VM.SetActive(false);
     }
 
     public void pressBackToMM()
