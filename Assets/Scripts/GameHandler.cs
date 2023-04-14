@@ -12,6 +12,7 @@ public class GameHandler : MonoBehaviour
     public GameObject currentBalloon;
     public static GameObject currentDart;
     public GameObject DartSpawn;
+    public GameObject Tutorial;
 
     public Rigidbody rb;
 
@@ -96,6 +97,11 @@ public class GameHandler : MonoBehaviour
                 else
                 {
                     gameTimer = 5;
+                }
+
+                if(Level == 2)
+                {
+                    HandleTutorial(false);
                 }
                 
                 print("You won :)");
@@ -254,6 +260,11 @@ public class GameHandler : MonoBehaviour
             print("You qoit the game");
             Application.Quit();
         }
+    }
+
+    public void HandleTutorial(bool show)
+    {
+        Tutorial.SetActive(show);
     }
 
     public IEnumerator WaitForDelay(float delay)

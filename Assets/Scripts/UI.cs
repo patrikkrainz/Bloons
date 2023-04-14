@@ -16,8 +16,10 @@ public class UI : MonoBehaviour
 
     public GameObject MM;
     public GameObject PM;
-    public GameObject OM;
+    public GameObject VM;
     public GameObject Back;
+    public GameObject VMButton;
+    public GameObject VMSlider;
 
     private KeyCode Pause = KeyCode.P;
 
@@ -49,9 +51,10 @@ public class UI : MonoBehaviour
             select = null;
         }
 
-        if (SceneManager.GetActiveScene().name == "MainMenu" && !MM.activeSelf && !OM.activeSelf)
+        if (SceneManager.GetActiveScene().name == "MainMenu" && !MM.activeSelf)
         {
             MM.SetActive(true);
+            VM.SetActive(true);
         }
 
         if (SceneManager.GetActiveScene().name == "MainMenu" && select == null && Input.anyKeyDown)
@@ -76,12 +79,7 @@ public class UI : MonoBehaviour
         {
             Time.timeScale = 0;
             PM.SetActive(true);
-        }
-
-        if (OM.activeSelf && select == null && Input.anyKeyDown)
-        {
-            MainV.Select();
-            select = MainV;
+            VM.SetActive(true);
         }
 
         lastMousePos = Input.mousePosition;
@@ -93,21 +91,14 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene("Waterpobbelz");
     }
 
-    public void pressOptions()
+    public void pressVolume()
     {
-        if (SceneManager.GetActiveScene().name == "MainMenu")
-        {
-            MM.SetActive(false);
-        }
-        else
-        {
-            PM.SetActive(false);
-        }
+        VMSlider.SetActive(true);
+        VMButton.SetActive(false);
+        MainV.Select();
+        select = MainV;
 
-        OM.SetActive(true);
         Back.SetActive(true);
-        //BackB.Select();
-        //select = BackB;
     }
 
     public void pressQuit()
@@ -132,34 +123,25 @@ public class UI : MonoBehaviour
 
     public void pressBack()
     {
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+        VMSlider.SetActive(false);
+        Back.SetActive(false);
+        VMButton.SetActive(true);
+
+        if(SceneManager.GetActiveScene().name == "MainMenu")
         {
-            OM.SetActive(false);
-            Back.SetActive(false);
-            MM.SetActive(true);
             StartB.Select();
             select = StartB;
         }
-        else
+        else if(SceneManager.GetActiveScene().name == "Waterpobbelz")
         {
-            OM.SetActive(false);
-            Back.SetActive(false);
-            PM.SetActive(true);
             ContinueB.Select();
             select = ContinueB;
         }
+        
     }
 
     public void HandleMainVSlider(float volume1)
     {
         Volume.SetFloat("MainV", volume1);
-    }
-    public void HandleMusicVSlider(float volume2)
-    {
-        Volume.SetFloat("MusicV", volume2);
-    }
-    public void HandleSFXVSlider(float volume3)
-    {
-        Volume.SetFloat("SFXV", volume3);
     }
 }
