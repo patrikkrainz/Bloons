@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
     public KeyCode Shoot = KeyCode.Space;
 
+    public AudioSource Source;
+    public AudioClip Pop;
+
     void Start()
     {
         TobiiAPI.Start(null);
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
             if (focusedObject != null && focusedObject.layer == 6)
             {
                 Object.Destroy(focusedObject);
+                Source.PlayOneShot(Pop);
                 focusedObject = null;
                 prevObject = null;
                 GameHandler.currentDart.SetActive(false);
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
             else if (focusedObject != null && focusedObject.layer == 7)
             {
                 Object.Destroy(focusedObject);
+                Source.PlayOneShot(Pop);
                 focusedObject = null;
                 prevObject = null;
                 GameHandler.currentDart.SetActive(false);

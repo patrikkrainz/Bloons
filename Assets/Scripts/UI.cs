@@ -69,13 +69,13 @@ public class UI : MonoBehaviour
                 select = StartB;
             }
         }
-        else if (SceneManager.GetActiveScene().name == "Waterpobbelz" && PM.activeSelf && select == null && Input.anyKeyDown)
+        else if (SceneManager.GetActiveScene().name == "BloonsOffensive" && PM.activeSelf && select == null && Input.anyKeyDown)
         {
             ContinueB.Select();
             select = ContinueB;
         }
 
-        if (SceneManager.GetActiveScene().name == "Waterpobbelz" && !PM.activeSelf && Input.GetKeyDown(Pause))
+        if (SceneManager.GetActiveScene().name == "BloonsOffensive" && !PM.activeSelf && Input.GetKeyDown(Pause))
         {
             Time.timeScale = 0;
             PM.SetActive(true);
@@ -88,7 +88,7 @@ public class UI : MonoBehaviour
     public void pressStart()
     {
         select = null;
-        SceneManager.LoadScene("Waterpobbelz");
+        SceneManager.LoadScene("BloonsOffensive");
     }
 
     public void pressVolume()
@@ -132,7 +132,7 @@ public class UI : MonoBehaviour
             StartB.Select();
             select = StartB;
         }
-        else if(SceneManager.GetActiveScene().name == "Waterpobbelz")
+        else if(SceneManager.GetActiveScene().name == "BloonsOffensive")
         {
             ContinueB.Select();
             select = ContinueB;

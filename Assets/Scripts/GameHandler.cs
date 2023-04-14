@@ -13,11 +13,13 @@ public class GameHandler : MonoBehaviour
     public static GameObject currentDart;
     public GameObject DartSpawn;
     public GameObject Tutorial;
+    public GameObject WinLose;
 
     public Rigidbody rb;
 
     public TMP_Text LevelText;
     public TMP_Text TimeText;
+    public TMP_Text WinLoseText;
 
     public Vector3 spawnPosition;
     public Vector3 force;
@@ -73,6 +75,8 @@ public class GameHandler : MonoBehaviour
         {
             gameStarted = false;
 
+            WinLose.SetActive(true);
+
             GameObject[] darts = GameObject.FindGameObjectsWithTag("Dart");
 
             foreach (GameObject dart in darts)
@@ -104,8 +108,8 @@ public class GameHandler : MonoBehaviour
                 {
                     HandleTutorial(false);
                 }
-                
-                print("You won :)");
+
+                WinLoseText.text = "You won :)";
             }
             else if(gameTimer == 0 && gameTimer != 10)
             {
@@ -118,7 +122,7 @@ public class GameHandler : MonoBehaviour
                     gameTimer = 5;
                 }
 
-                print(" You lost :(");
+                WinLoseText.text = "You lost :(";
             }
 
             StartCoroutine(WaitForDelay(0.5f));
@@ -132,6 +136,8 @@ public class GameHandler : MonoBehaviour
         if (!gameStarted && !gameOver && Input.GetKeyDown(Begin))
         {
             gameStarted = true;
+
+            WinLose.SetActive(false);
 
             BalloonCap = 10 + Level;
 
