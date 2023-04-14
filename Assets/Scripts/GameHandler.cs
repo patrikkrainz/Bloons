@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.UI;
+using UnityEngine.Audio;
 using TMPro;
 
 public class GameHandler : MonoBehaviour
@@ -42,7 +43,7 @@ public class GameHandler : MonoBehaviour
     public static bool gameStarted = false;
     public static bool gameOver = false;
 
-    private void Awake()
+    void Awake()
     {
         currentDart = null;
         currentBalloon = null;

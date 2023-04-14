@@ -29,6 +29,11 @@ public class UI : MonoBehaviour
 
     public AudioMixer Volume;
 
+    void Start()
+    {
+        HandleMainVSlider(GlobalData.getVolume());
+    }
+
     void Update()
     {
         if (lastMousePos != Input.mousePosition)
@@ -94,6 +99,7 @@ public class UI : MonoBehaviour
     public void pressVolume()
     {
         VMSlider.SetActive(true);
+        MainV.value = GlobalData.getVolume();
         VMButton.SetActive(false);
         MainV.Select();
         select = MainV;
@@ -140,8 +146,10 @@ public class UI : MonoBehaviour
         
     }
 
-    public void HandleMainVSlider(float volume1)
+    public void HandleMainVSlider(float volume)
     {
-        Volume.SetFloat("MainV", volume1);
+        Volume.SetFloat("MainV", volume);
+
+        GlobalData.setVolume(volume);
     }
 }
